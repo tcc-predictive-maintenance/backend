@@ -9,12 +9,11 @@ model = joblib.load("src/service/static/random_forest.pkl")
 
 def predict(machine_description: MachineDescriptionDTO):
     pred = model.predict_proba(_convert_to_dataframe(machine_description))
-    print(pred)
     return json.dumps(pred.tolist())
 
 
 def _convert_to_dataframe(machine_description: MachineDescriptionDTO):
-    a = pd.DataFrame({
+    return pd.DataFrame({
         'Type': [_encode_machine_type(machine_description)],
         'Air temperature [°C]': [machine_description.air_temperature],
         'Process temperature [°C]': [machine_description.process_temperature],
@@ -24,8 +23,6 @@ def _convert_to_dataframe(machine_description: MachineDescriptionDTO):
         'Target': [machine_description.target],
         'Temperature difference [°C]': [machine_description.process_temperature - machine_description.air_temperature]
     })
-    print(a)
-    return a
 
 
 def _encode_machine_type(machine_description: MachineDescriptionDTO):
