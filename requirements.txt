@@ -1,0 +1,7 @@
+pydantic~=2.9.2
+joblib~=1.4.2
+pandas~=2.2.3
+fastapi[standard]~=0.115.4
+pydantic~=2.9.2
+uvicorn~=0.32.0
+scikit-learn==1.4.1.post1
